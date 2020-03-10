@@ -1,6 +1,7 @@
 import unittest
 
-from hashtable import HashTable
+#from hashtable import HashTable
+from second_pass import HashTable
 
 
 class TestHashTable(unittest.TestCase):
@@ -19,7 +20,7 @@ class TestHashTable(unittest.TestCase):
         ht.insert("key-8", "val-8")
         ht.insert("key-9", "val-9")
 
-        return_value = ht.retrieve("key-0")
+        return_value = ht.retrieve("key-0")        
         self.assertTrue(return_value == "val-0")
         return_value = ht.retrieve("key-1")
         self.assertTrue(return_value == "val-1")
@@ -66,8 +67,10 @@ class TestHashTable(unittest.TestCase):
         ht.insert("key-9", "new-val-9")
 
         return_value = ht.retrieve("key-0")
+        print(f"TEST: key-0: {ht.retrieve('key-0')}")
         self.assertTrue(return_value == "new-val-0")
         return_value = ht.retrieve("key-1")
+        print(f"TEST: key-1: {ht.retrieve('key-1')}")
         self.assertTrue(return_value == "new-val-1")
         return_value = ht.retrieve("key-2")
         self.assertTrue(return_value == "new-val-2")
@@ -101,6 +104,7 @@ class TestHashTable(unittest.TestCase):
         ht.insert("key-9", "val-9")
 
         return_value = ht.retrieve("key-0")
+        print(f"retrieve key-0: {ht.retrieve('key-0')}")
         self.assertTrue(return_value == "val-0")
         return_value = ht.retrieve("key-1")
         self.assertTrue(return_value == "val-1")

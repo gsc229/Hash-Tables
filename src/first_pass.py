@@ -26,7 +26,9 @@ class HashTable:
 
         You may replace the Python hash with DJB2 as a stretch goal.
         '''
-        pass
+        #key = len(key) % self.capacity
+
+        return hash(key)
 
     def _hash_djb2(self, key):
         '''
@@ -42,6 +44,8 @@ class HashTable:
         within the storage capacity of the hash table.
         '''
 
+        return self._hash(key) % len(self.storage)
+
     def insert(self, key, value):
         '''
         Store the value with the given key.
@@ -50,7 +54,11 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        if self.storage[self._hash_mod(key)] == None:
+            self.storage[self._hash_mod(key)] = {key: value}
+        else:
+            self.storage[self._hash_mod(key)][key] = value
+
     def remove(self, key):
         '''
         Remove the value stored with the given key.
@@ -69,7 +77,7 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        return self.storage[self._hash_mod(key)][key]
 
     def resize(self):
         '''
@@ -78,7 +86,7 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        self.capacity = self.capacity * 2
 
 
 if __name__ == "__main__":
@@ -110,3 +118,12 @@ if __name__ == "__main__":
     print(ht.retrieve("line_3"))
 
     print("")
+
+
+# hash1 = HashTable(5)
+
+# print(
+#     f"hash1.hash('key'): {hash1._hash('key6')}")
+
+# hash1.insert('key6', 'six')
+# print(hash1.retrieve('key6'))
